@@ -10,7 +10,7 @@ export default function HomePage() {
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600">
       <div className="bg-white/95 rounded-3xl shadow-2xl border border-white/70 px-8 py-10 w-full max-w-md text-center">
         <h1 className="text-3xl font-extrabold text-slate-900 mb-2">
-          WhisperBox NGL
+          WhisperBox
         </h1>
         <p className="text-sm text-slate-500 mb-6">
           Create your own link and let people send you anonymous messages.
@@ -32,7 +32,7 @@ export default function HomePage() {
         </div>
 
         <p className="mt-6 text-[11px] text-slate-400">
-          Backend: <span className="font-mono">{API_URL}</span>
+          by: sepphy avenids igop Backend: <span className="font-mono">{API_URL}</span>
         </p>
       </div>
     </main>
