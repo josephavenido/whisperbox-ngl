@@ -227,52 +227,41 @@ app.get("/user/:slug/messages", (req, res) => {
 
 // Send a new anonymous message to a user (by slug)
 // Example: POST /user/domm/messages  { "text": "hi domm" }
-app.post("/user/:slug/messages", (req, res) => {
+aapp.post("/u/:slug/messages", async (req, res) => {
   const { slug } = req.params;
   const { text } = req.body;
 
-  // 1) Validate message
   if (!text || !text.trim()) {
     return res.status(400).json({ error: "Message text is required" });
   }
 
-  if (text.length > 500) {
-    return res.status(400).json({ error: "Message too long (max 500 chars)" });
-  }
+  try {
+    // 1) Find user by slug
+    const [rows] = await db
+      .promise()
+      .query("SELECT id FROM users WHERE slug = ?", [slug]);
 
-  // 2) Find user by slug
-  const findUserSql = "SELECT id FROM users WHERE slug = ?";
-
-  db.query(findUserSql, [slug], (err, users) => {
-    if (err) {
-      console.error("❌ Error finding user in POST /user/:slug/messages:", err);
-      return res.status(500).json({ error: "Database error" });
-    }
-
-    if (users.length === 0) {
+    if (rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const userId = users[0].id;
+    const userId = rows[0].id;
 
-    // 3) Insert the new message
-    const insertSql =
-      "INSERT INTO messages (user_id, text, created_at) VALUES (?, ?, NOW())";
+    // 2) Insert message for that user
+    await db
+      .promise()
+      .query(
+        "INSERT INTO messages (user_id, text, created_at) VALUES (?, ?, NOW())",
+        [userId, text]
+      );
 
-    db.query(insertSql, [userId, text], (err2, result) => {
-      if (err2) {
-        console.error("❌ Error inserting message:", err2);
-        return res.status(500).json({ error: "Database error" });
-      }
-
-      return res.status(201).json({
-        id: result.insertId,
-        user_id: userId,
-        text,
-      });
-    });
-  });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error("❌ Error inserting message:", err);
+    res.status(500).json({ error: "Database error" });
+  }
 });
+
 
 // ================== PROTECTED: LOGGED-IN USER MESSAGES ================== //
 

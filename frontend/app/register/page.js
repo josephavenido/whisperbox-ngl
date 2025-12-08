@@ -81,12 +81,13 @@ export default function RegisterPage() {
               Username
             </label>
             <input
-              type="text"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              placeholder="e.g. domm"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+  type="text"
+  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+  placeholder="e.g. domm"
+  value={username}
+  onChange={(e) => setUsername(e.target.value)}
+/>
+
             <p className="text-[11px] text-slate-400 mt-1">
               This will be used for your link (like /u/yourusername).
             </p>
@@ -97,12 +98,12 @@ export default function RegisterPage() {
               Email (optional)
             </label>
             <input
-              type="email"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+  type="email"
+  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+  placeholder="you@example.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
           </div>
 
           <div className="text-left">
@@ -110,12 +111,13 @@ export default function RegisterPage() {
               Password
             </label>
             <input
-              type="password"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              placeholder="At least 6 characters"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+  type="password"
+  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+  placeholder="At least 6 characters"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
+
           </div>
 
           {errorMsg && (

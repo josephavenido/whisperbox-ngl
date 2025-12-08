@@ -144,12 +144,12 @@ export default function PublicUserPage() {
 
           <form onSubmit={handleSubmit} className="space-y-3">
             <textarea
-              className="w-full h-28 md:h-32 border border-slate-200 rounded-2xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              placeholder={`Write something for ${displayName}...`}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              maxLength={500}
-            />
+  className="w-full h-28 md:h-32 border border-slate-200 rounded-2xl px-3 py-2 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+  placeholder={`Write something for ${displayName}...`}
+  value={text}
+  onChange={(e) => setText(e.target.value)}
+  maxLength={500}
+/>
             <div className="flex justify-between items-center text-[11px] text-slate-400">
               <span>Message will be sent anonymously.</span>
               <span>
